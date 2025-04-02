@@ -1,13 +1,10 @@
 package com.example.mathematicmobileapplication;
 
 import android.os.Bundle;
-import android.view.DragEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,7 +21,10 @@ public class OrderNumbersActivity extends AppCompatActivity {
     private int currentScore = 0;
     private int totalAttempts = 0;
     private TextView scoreText;
-    private float dX, dY;
+
+    // Variables for swapping
+    private TextView firstSelectedNumber = null;
+    private TextView secondSelectedNumber = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +107,9 @@ public class OrderNumbersActivity extends AppCompatActivity {
 
     private void displayNumbers() {
         numbersContainer.removeAllViews();
+        // Reset selected numbers
+        firstSelectedNumber = null;
+        secondSelectedNumber = null;
 
         for (Integer number : numbers) {
             final TextView numberView = new TextView(this);
@@ -123,23 +126,11 @@ public class OrderNumbersActivity extends AppCompatActivity {
             numberView.setBackgroundResource(R.drawable.number_background);
             numberView.setTag(number);
 
-            // Make the view draggable
-            numberView.setOnTouchListener(new View.OnTouchListener() {
+            // Set click listener for swapping
+            numberView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public boolean onTouch(View view, MotionEvent event) {
-                    switch (event.getActionMasked()) {
-                        case MotionEvent.ACTION_DOWN:
-                            dX = view.getX() - event.getRawX();
-                            dY = view.getY() - event.getRawY();
-                            break;
-                        case MotionEvent.ACTION_MOVE:
-                            view.setX(event.getRawX() + dX);
-                            view.setY(event.getRawY() + dY);
-                            break;
-                        default:
-                            return false;
-                    }
-                    return true;
+                public void onClick(View v) {
+                    handleNumberSelection((TextView) v);
                 }
             });
 
@@ -147,12 +138,53 @@ public class OrderNumbersActivity extends AppCompatActivity {
         }
     }
 
-    private void checkOrder() {
-        List<Integer> currentOrder = new ArrayList<>();
-        for (int i = 0; i < numbersContainer.getChildCount(); i++) {
-            TextView childView = (TextView) numbersContainer.getChildAt(i);
-            currentOrder.add((Integer) childView.getTag());
+    private void handleNumberSelection(TextView selectedNumber) {
+        if (firstSelectedNumber == null) {
+            // First selection
+            firstSelectedNumber = selectedNumber;
+            firstSelectedNumber.setBackgroundResource(R.drawable.selected_number_background);
+        } else if (secondSelectedNumber == null && selectedNumber != firstSelectedNumber) {
+            // Second selection
+            secondSelectedNumber = selectedNumber;
+            secondSelectedNumber.setBackgroundResource(R.drawable.selected_number_background);
+
+            // Swap the numbers
+            swapNumbers();
+        } else if (selectedNumber == firstSelectedNumber) {
+            // Deselect first number
+            firstSelectedNumber.setBackgroundResource(R.drawable.number_background);
+            firstSelectedNumber = null;
+        } else if (selectedNumber == secondSelectedNumber) {
+            // Deselect second number
+            secondSelectedNumber.setBackgroundResource(R.drawable.number_background);
+            secondSelectedNumber = null;
         }
+    }
+
+    private void swapNumbers() {
+        // Get the indices of the selected views
+        int firstIndex = numbersContainer.indexOfChild(firstSelectedNumber);
+        int secondIndex = numbersContainer.indexOfChild(secondSelectedNumber);
+
+        // Swap in the numbers list
+        Integer temp = numbers.get(firstIndex);
+        numbers.set(firstIndex, numbers.get(secondIndex));
+        numbers.set(secondIndex, temp);
+
+        // Reset backgrounds
+        firstSelectedNumber.setBackgroundResource(R.drawable.number_background);
+        secondSelectedNumber.setBackgroundResource(R.drawable.number_background);
+
+        // Reset selections
+        firstSelectedNumber = null;
+        secondSelectedNumber = null;
+
+        // Redisplay the numbers
+        displayNumbers();
+    }
+
+    private void checkOrder() {
+        List<Integer> currentOrder = new ArrayList<>(numbers);
 
         List<Integer> correctOrder = new ArrayList<>(numbers);
         if (isAscending) {
