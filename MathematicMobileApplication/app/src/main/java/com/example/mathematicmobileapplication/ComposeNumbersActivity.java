@@ -1,10 +1,13 @@
 package com.example.mathematicmobileapplication;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.GridLayout;
+import androidx.gridlayout.widget.GridLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.Random;
@@ -24,52 +27,61 @@ public class ComposeNumbersActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_compose_numbers);
+        try {
+            setContentView(R.layout.activity_compose_numbers);
 
-        // Initialize views
-        targetNumberText = findViewById(R.id.targetNumberText);
-        equationText = findViewById(R.id.equationText);
-        resultText = findViewById(R.id.resultText);
-        numbersGrid = findViewById(R.id.numbersGrid);
-        clearButton = findViewById(R.id.clearButton);
-        checkButton = findViewById(R.id.checkButton);
-        newNumberButton = findViewById(R.id.newNumberButton);
-        homeButton = findViewById(R.id.homeButton);
-        scoreText = findViewById(R.id.scoreText);
+            // Initialize views
+            targetNumberText = findViewById(R.id.targetNumberText);
+            equationText = findViewById(R.id.equationText);
+            resultText = findViewById(R.id.resultText);
+            numbersGrid = findViewById(R.id.numbersGrid);
+            clearButton = findViewById(R.id.clearButton);
+            checkButton = findViewById(R.id.checkButton);
+            newNumberButton = findViewById(R.id.newNumberButton);
+            homeButton = findViewById(R.id.homeButton);
+            scoreText = findViewById(R.id.scoreText);
 
-        scoreText.setText("Score: 0/0");
+            scoreText.setText("Score: 0/0");
 
-        // Set listeners
-        clearButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clearSelection();
-            }
-        });
+            // Set listeners
+            clearButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    clearSelection();
+                }
+            });
 
-        checkButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                checkComposition();
-            }
-        });
+            checkButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    checkComposition();
+                }
+            });
 
-        newNumberButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                generateNewTarget();
-            }
-        });
+            newNumberButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    generateNewTarget();
+                }
+            });
 
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+            homeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
 
-        // Generate initial target number and number options
-        generateNewTarget();
+            // Generate initial target number and number options
+            generateNewTarget();
+        } catch (Exception e) {
+            // Log the exception
+            Log.e("ComposeNumbersActivity","Error initializing activity", e);
+            // Show a toast message
+            Toast.makeText(this, "An error occurred. Please try again", Toast.LENGTH_SHORT).show();
+            // Finish the activity if necessary
+            finish();
+        }
     }
 
     private void generateNewTarget() {
@@ -92,22 +104,22 @@ public class ComposeNumbersActivity extends AppCompatActivity {
         // Generate 9 numbers from 1 to target number-1
         ArrayList<Integer> availableNumbers = new ArrayList<>();
 
-        // Always include small numbers 1-5
-        for (int i = 1; i <= Math.min(5, targetNumber-1); i++) {
+        // Add all possible numbers from 1 to target - 1
+        for (int i = 1; i < targetNumber; i++) {
             availableNumbers.add(i);
         }
 
-        // Add some larger numbers up to target-1
-        int max = targetNumber - 1;
-        while (availableNumbers.size() < 9 && max > 0) {
-            int num = random.nextInt(max) + 1;
-            if (!availableNumbers.contains(num)) {
-                availableNumbers.add(num);
-            }
+        // If we have fewer than 9 numbers available, add some repeats
+        while (availableNumbers.size() < 9) {
+            int num = random.nextInt(targetNumber - 1) + 1;
+            availableNumbers.add(num);
         }
 
-        // Shuffle the numbers
-        java.util.Collections.shuffle(availableNumbers);
+        // If we have more than 9, trim the list
+        if (availableNumbers.size() > 9) {
+            java.util.Collections.shuffle(availableNumbers);
+            availableNumbers = new ArrayList<>(availableNumbers.subList(0, 9));
+        }
 
         // Create buttons for each number
         for (int i = 0; i < availableNumbers.size(); i++) {
@@ -169,15 +181,13 @@ public class ComposeNumbersActivity extends AppCompatActivity {
     }
 
     private void checkComposition() {
-        if (selectedNumbers.size() != 2) {
+        if (selectedNumbers.size() < 2) {
             resultText.setText("Please select TWO numbers");
             return;
         }
 
-        int sum = 0;
-        for (int num : selectedNumbers) {
-            sum += num;
-        }
+        // Ensure we only use the first two selected numbers if somehow more were selected
+        int sum = selectedNumbers.get(0) + selectedNumbers.get(1);
 
         totalAttempts++;
         boolean isCorrect = (sum == targetNumber);

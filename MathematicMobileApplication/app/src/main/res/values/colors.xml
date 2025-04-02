@@ -2,14 +2,30 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="primary">#4CAF50</color>         <!-- Green - good for a math education app -->
-    <color name="primary_dark">#388E3C</color>    <!-- Darker green -->
-    <color name="accent">#FF9800</color>          <!-- Orange accent -->
-    <color name="text_primary">#212121</color>    <!-- Dark text -->
-    <color name="text_secondary">#757575</color>  <!-- Medium gray text -->
-    <color name="background">#FFFFFF</color>      <!-- White background -->
-    <color name="colorPrimary">#4CAF50</color>
-    <color name="colorPrimaryDark">#388E3C</color>
-    <color name="colorAccent">#FF9800</color>
-    <color name="colorSecondary">#2196F3</color>
+
+    <!-- Instagram-inspired color palette -->
+    <color name="primary">#405DE6</color>          <!-- Instagram blue -->
+    <color name="primary_dark">#3951C6</color>     <!-- Darker blue -->
+    <color name="primary_light">#5B72F2</color>    <!-- Lighter blue -->
+
+    <color name="accent">#FD1D1D</color>           <!-- Instagram red/pink -->
+    <color name="accent_gradient_start">#C13584</color> <!-- Instagram gradient start -->
+    <color name="accent_gradient_end">#E1306C</color>   <!-- Instagram gradient middle -->
+
+    <color name="purple">#833AB4</color>           <!-- Instagram purple -->
+    <color name="orange">#F77737</color>           <!-- Instagram orange -->
+    <color name="yellow">#FCAF45</color>           <!-- Instagram yellow -->
+
+    <color name="background">#FAFAFA</color>       <!-- Instagram light background -->
+    <color name="card_background">#FFFFFF</color>  <!-- Card background -->
+    <color name="divider">#DBDBDB</color>          <!-- Instagram divider -->
+
+    <color name="text_primary">#262626</color>     <!-- Instagram primary text -->
+    <color name="text_secondary">#8E8E8E</color>   <!-- Instagram secondary text -->
+
+    <!-- Keeping these for backward compatibility -->
+    <color name="colorPrimary">@color/primary</color>
+    <color name="colorPrimaryDark">@color/primary_dark</color>
+    <color name="colorAccent">@color/accent</color>
+    <color name="colorSecondary">@color/purple</color>
 </resources>
