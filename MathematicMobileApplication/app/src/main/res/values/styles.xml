@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/primary</item>
+        <!-- Darker variant of primary color -->
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <!-- Accent color used for UI controls -->
+        <item name="colorAccent">@color/accent</item>
+        <!-- Other customizations -->
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">false</item>
+    </style>
+
+    <!-- You can add other themes or styles below -->
+</resources>

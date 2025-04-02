@@ -2,4 +2,14 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="primary">#4CAF50</color>         <!-- Green - good for a math education app -->
+    <color name="primary_dark">#388E3C</color>    <!-- Darker green -->
+    <color name="accent">#FF9800</color>          <!-- Orange accent -->
+    <color name="text_primary">#212121</color>    <!-- Dark text -->
+    <color name="text_secondary">#757575</color>  <!-- Medium gray text -->
+    <color name="background">#FFFFFF</color>      <!-- White background -->
+    <color name="colorPrimary">#4CAF50</color>
+    <color name="colorPrimaryDark">#388E3C</color>
+    <color name="colorAccent">#FF9800</color>
+    <color name="colorSecondary">#2196F3</color>
 </resources>

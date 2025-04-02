@@ -156,17 +156,16 @@ public class ComposeNumbersActivity extends AppCompatActivity {
             }
         }
 
-        equationText.setText(equation.toString());
-
         // Check if we have two numbers already selected
         if (selectedNumbers.size() == 2) {
             int sum = 0;
             for (int num : selectedNumbers) {
                 sum += num;
             }
-
-            equationText.append(" = ").append(sum);
+            equation.append(" = ").append(sum);
         }
+
+        equationText.setText(equation.toString());
     }
 
     private void checkComposition() {
