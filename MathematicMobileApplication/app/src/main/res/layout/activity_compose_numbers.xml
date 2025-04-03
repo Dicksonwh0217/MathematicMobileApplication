@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_gradient_purple"
+    android:background="@drawable/background_gradient_blue"
     tools:context=".ComposeNumbersActivity">
 
     <TextView
@@ -63,7 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/primary"
                 android:textSize="36sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -87,7 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/primary_dark"
             android:textSize="24sp" />
     </androidx.cardview.widget.CardView>
 

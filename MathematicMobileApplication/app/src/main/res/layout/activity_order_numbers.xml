@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_gradient_green"
+    android:background="@drawable/background_gradient_blue"
     tools:context=".OrderNumbersActivity">
 
     <TextView
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="Descending"
-            android:backgroundTint="@color/colorSecondary" />
+            android:backgroundTint="@color/primary" />
     </LinearLayout>
 
     <androidx.cardview.widget.CardView

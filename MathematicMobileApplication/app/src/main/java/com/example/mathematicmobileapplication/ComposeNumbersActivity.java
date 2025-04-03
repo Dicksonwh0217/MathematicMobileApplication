@@ -168,15 +168,6 @@ public class ComposeNumbersActivity extends AppCompatActivity {
             }
         }
 
-        // Check if we have two numbers already selected
-        if (selectedNumbers.size() == 2) {
-            int sum = 0;
-            for (int num : selectedNumbers) {
-                sum += num;
-            }
-            equation.append(" = ").append(sum);
-        }
-
         equationText.setText(equation.toString());
     }
 
@@ -188,6 +179,9 @@ public class ComposeNumbersActivity extends AppCompatActivity {
 
         // Ensure we only use the first two selected numbers if somehow more were selected
         int sum = selectedNumbers.get(0) + selectedNumbers.get(1);
+
+        // Show the complete equation with result
+        equationText.setText(selectedNumbers.get(0) + " + " + selectedNumbers.get(1) + " = " + sum);
 
         totalAttempts++;
         boolean isCorrect = (sum == targetNumber);
