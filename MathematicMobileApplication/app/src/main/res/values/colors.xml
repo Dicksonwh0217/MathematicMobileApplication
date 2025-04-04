@@ -9,9 +9,6 @@
     <color name="primary_light">#5B72F2</color>    <!-- Lighter blue -->
 
     <color name="accent">#FD1D1D</color>           <!-- Instagram red/pink -->
-    <color name="accent_gradient_start">#C13584</color> <!-- Instagram gradient start -->
-    <color name="accent_gradient_end">#E1306C</color>   <!-- Instagram gradient middle -->
-
     <color name="purple">#833AB4</color>           <!-- Instagram purple -->
     <color name="orange">#F77737</color>           <!-- Instagram orange -->
     <color name="yellow">#FCAF45</color>           <!-- Instagram yellow -->
