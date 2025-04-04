@@ -1,8 +1,11 @@
 package com.example.mathematicmobileapplication;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,11 +19,15 @@ public class OrderNumbersActivity extends AppCompatActivity {
     private List<Integer> numbers = new ArrayList<>();
     private LinearLayout numbersContainer;
     private Button checkButton, resetButton, homeButton, ascendingButton, descendingButton;
+    private ImageButton tutorialButton;
     private TextView instructionText, resultText;
     private boolean isAscending = true;
     private int currentScore = 0;
     private int totalAttempts = 0;
     private TextView scoreText;
+
+    // Tutorial video URL
+    private static final String TUTORIAL_URL = "https://www.youtube.com/watch?v=Xy49bMWgAYo";
 
     // Variables for swapping
     private TextView firstSelectedNumber = null;
@@ -41,6 +48,7 @@ public class OrderNumbersActivity extends AppCompatActivity {
         instructionText = findViewById(R.id.instructionText);
         resultText = findViewById(R.id.resultText);
         scoreText = findViewById(R.id.scoreText);
+        tutorialButton = findViewById(R.id.tutorialButton);
 
         scoreText.setText("Score: 0/0");
 
@@ -84,8 +92,23 @@ public class OrderNumbersActivity extends AppCompatActivity {
             }
         });
 
+        // Set tutorial button listener
+        tutorialButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openTutorial();
+            }
+        });
+
         // Generate initial numbers
         generateNumbers();
+    }
+
+    // Method to open tutorial video
+    private void openTutorial() {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(TUTORIAL_URL));
+        startActivity(intent);
     }
 
     private void generateNumbers() {
