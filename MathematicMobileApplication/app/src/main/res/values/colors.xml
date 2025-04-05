@@ -4,21 +4,21 @@
     <color name="white">#FFFFFFFF</color>
 
     <!-- Instagram-inspired color palette -->
-    <color name="primary">#405DE6</color>          <!-- Instagram blue -->
+    <color name="primary">#405DE6</color>          <!-- blue -->
     <color name="primary_dark">#3951C6</color>     <!-- Darker blue -->
     <color name="primary_light">#5B72F2</color>    <!-- Lighter blue -->
 
-    <color name="accent">#FD1D1D</color>           <!-- Instagram red/pink -->
-    <color name="purple">#833AB4</color>           <!-- Instagram purple -->
-    <color name="orange">#F77737</color>           <!-- Instagram orange -->
-    <color name="yellow">#FCAF45</color>           <!-- Instagram yellow -->
+    <color name="accent">#FD1D1D</color>           <!-- red/pink -->
+    <color name="purple">#833AB4</color>           <!-- purple -->
+    <color name="orange">#F77737</color>           <!-- orange -->
+    <color name="yellow">#FCAF45</color>           <!-- yellow -->
 
-    <color name="background">#FAFAFA</color>       <!-- Instagram light background -->
+    <color name="background">#FAFAFA</color>       <!-- light background -->
     <color name="card_background">#FFFFFF</color>  <!-- Card background -->
-    <color name="divider">#DBDBDB</color>          <!-- Instagram divider -->
+    <color name="divider">#DBDBDB</color>          <!-- divider -->
 
-    <color name="text_primary">#262626</color>     <!-- Instagram primary text -->
-    <color name="text_secondary">#8E8E8E</color>   <!-- Instagram secondary text -->
+    <color name="text_primary">#262626</color>     <!-- primary text -->
+    <color name="text_secondary">#8E8E8E</color>   <!-- secondary text -->
 
     <!-- Keeping these for backward compatibility -->
     <color name="colorPrimary">@color/primary</color>

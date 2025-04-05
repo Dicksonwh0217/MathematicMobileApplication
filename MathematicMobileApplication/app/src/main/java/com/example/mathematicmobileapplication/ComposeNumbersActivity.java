@@ -1,9 +1,12 @@
 package com.example.mathematicmobileapplication;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import androidx.gridlayout.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,12 +20,16 @@ public class ComposeNumbersActivity extends AppCompatActivity {
     private TextView targetNumberText, equationText, resultText;
     private GridLayout numbersGrid;
     private Button clearButton, checkButton, newNumberButton, homeButton;
+    private ImageButton tutorialButton;
     private int targetNumber;
     private ArrayList<Integer> selectedNumbers = new ArrayList<>();
     private Random random = new Random();
     private int score = 0;
     private int totalAttempts = 0;
     private TextView scoreText;
+
+    // Tutorial video URL
+    private static final String TUTORIAL_URL = "https://www.youtube.com/watch?v=G05AgnEGmgw";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +47,7 @@ public class ComposeNumbersActivity extends AppCompatActivity {
             newNumberButton = findViewById(R.id.newNumberButton);
             homeButton = findViewById(R.id.homeButton);
             scoreText = findViewById(R.id.scoreText);
+            tutorialButton = findViewById(R.id.tutorialButton);
 
             scoreText.setText("Score: 0/0");
 
@@ -72,6 +80,14 @@ public class ComposeNumbersActivity extends AppCompatActivity {
                 }
             });
 
+            // Set tutorial button listener
+            tutorialButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openTutorial();
+                }
+            });
+
             // Generate initial target number and number options
             generateNewTarget();
         } catch (Exception e) {
@@ -82,6 +98,13 @@ public class ComposeNumbersActivity extends AppCompatActivity {
             // Finish the activity if necessary
             finish();
         }
+    }
+
+    // Method to open tutorial video
+    private void openTutorial() {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(TUTORIAL_URL));
+        startActivity(intent);
     }
 
     private void generateNewTarget() {
